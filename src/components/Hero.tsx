@@ -1,7 +1,7 @@
 import { useTilt } from '../hooks/useTilt';
 import { HOURS, LINKS } from '../data/site';
-import { ImageSlot } from './ImageSlot';
 import { Navbar } from './Navbar';
+import heroGuestMatcha from '../assets/hero-guest-matcha.jpg';
 
 export function Hero() {
   const { imgRef, copyRef, onMouseMove, onMouseLeave } = useTilt();
@@ -63,8 +63,22 @@ export function Hero() {
 
         <div className="hero__stage">
           <div className="hero__frame">
-            <div className="hero__frame-inner" ref={imgRef}>
-              <ImageSlot label="Signature drink — tall product shot, centered" />
+            <img
+              className="hero__frame-img"
+              src={heroGuestMatcha}
+              alt="Guest holding an oversized iced matcha outside BRIO Coffee"
+            />
+          </div>
+          <div className="hero__pop-float">
+            <div className="hero__pop" ref={imgRef}>
+              <div className="hero__pop-crop">
+                <img
+                  className="hero__pop-img"
+                  src={heroGuestMatcha}
+                  alt=""
+                  aria-hidden="true"
+                />
+              </div>
             </div>
           </div>
           <div className="hero__badge">

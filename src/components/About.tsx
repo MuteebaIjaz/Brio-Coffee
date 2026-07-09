@@ -1,4 +1,7 @@
 import { ImageSlot } from './ImageSlot';
+import About1 from '../assets/About Brio Poster.jpg';
+import About2 from '../assets/Latte Art Closeup.png';
+
 
 const STATS = [
   { value: '40+', label: 'DRINKS ON MENU' },
@@ -31,10 +34,10 @@ export function About() {
       </div>
       <div className="about__stage">
         <div className="about__main">
-          <ImageSlot label="Interior — counter, wood & warm light" />
+          <ImageSlot label="Interior — counter, wood & warm light" src={About2}/>
         </div>
         <div className="about__detail">
-          <ImageSlot label="Detail — latte art close-up" />
+          <ImageSlot label="Detail — latte art close-up" src={About1}/>
         </div>
       </div>
     </section>

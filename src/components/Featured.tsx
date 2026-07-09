@@ -1,7 +1,8 @@
 import { FEATURED_DRINKS } from '../data/site';
 import { ImageSlot } from './ImageSlot';
 import Featured1 from '../assets/Banana Matcha Poster.jpg';
-import Featured2 from '../assets/Strawberry matcha.png';
+import Featured2 from '../assets/Strawberry-Matcha.jpeg';
+
 
 export function Featured() {
   const [hero, ...rest] = FEATURED_DRINKS;

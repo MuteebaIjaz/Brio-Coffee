@@ -120,12 +120,12 @@ export const REVIEWS: readonly Review[] = [
 ];
 
 export const GALLERY_FRAMES: readonly GalleryFrame[] = [
-  { id: 'g1', label: 'Interior wide shot', tall: true },
+  { id: 'g1', label: 'Interior — seating & gallery wall', tall: true },
   { id: 'g2', label: 'Espresso pour' },
-  { id: 'g3', label: 'Guests at the counter', tall: true },
+  { id: 'g3', label: 'Pour-over ritual', tall: true },
   { id: 'g4', label: 'Dates creations plate' },
-  { id: 'g5', label: 'Cold brew on wood' },
-  { id: 'g6', label: 'Storefront at dusk' },
+  { id: 'g5', label: 'Iced latte on wood' },
+  { id: 'g6', label: 'Storefront' },
 ];
 
 export const HOURS = {
