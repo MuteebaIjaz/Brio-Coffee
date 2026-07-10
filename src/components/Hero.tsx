@@ -109,7 +109,7 @@ export function Hero() {
 const FEATURES = [
   { num: '01', title: 'Specialty Beans', sub: 'Single-origin, brewed to order.' },
   { num: '02', title: 'Handcrafted Daily', sub: 'Drinks & treats made in-house.' },
-  { num: '03', title: 'Open Till Midnight', sub: 'Every day of the week.' },
+  { num: '03', title: 'Open until midnight', sub: 'Every day of the week.' },
 ] as const;
 
 function FeatureStrip() {

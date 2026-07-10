@@ -85,18 +85,18 @@ export const MENU_ITEMS: readonly MenuItem[] = [
 
 export const FEATURED_DRINKS: readonly FeaturedDrink[] = [
   {
-    name: 'Banana Bread Matcha',
-    tag: 'MATCHA CREATIONS',
-    photoLabel: 'Banana Bread Matcha — tall glass, layered',
+    name: 'Iced Latte',
+    tag: 'ICED COFFEE',
+    photoLabel: 'Iced Latte — tall glass, layered',
   },
   {
     name: 'Strawberry Matcha',
-    tag: '770 LBP',
+    tag: 'MATCHA CREATIONS',
     photoLabel: 'Strawberry Matcha — layered red & green',
   },
   {
     name: 'Salted Maple Latte',
-    tag: 'FLAVORED LATTE · 520 LBP',
+    tag: 'FLAVORED LATTE',
     photoLabel: 'Salted Maple Latte — iced, caramel drizzle',
   },
 ];
@@ -104,18 +104,18 @@ export const FEATURED_DRINKS: readonly FeaturedDrink[] = [
 export const REVIEWS: readonly Review[] = [
   {
     quote:
-      'The Spanish latte is the best I\u2019ve had in Beirut. Calm space, precise coffee.',
-    who: 'GOOGLE REVIEW',
+      'I’ve had a coffee at Brio during my visit to Beirut. It’s a very cozy and relaxing place. Delicious coffee and very friendly owners, they gave me a bookmark as a present while I as reading a book. I’d go there again and bring my friends :)',
+    who: 'Büşra Topal',
   },
   {
     quote:
-      'Open till midnight \u2014 my favourite late-night V60 ritual in the city.',
-    who: 'GOOGLE REVIEW',
+      'Absolutely the best specialty coffee shop in Hamra. I ended up coming here every day, and the service was consistently good. The V60 coffee is amazing, with three or more bean origins to choose from. The place also offers healthy snacks, and the atmosphere is always calm and peaceful.I highly recommend this place to coffee lovers.',
+    who: 'Alexandra Koptyaeva',
   },
   {
     quote:
-      'Matcha creations are art. The strawberry matcha alone is worth the trip.',
-    who: 'GOOGLE REVIEW',
+      'Beautiful hidden gem in Beirut with delicious coffee and a great service! A cozy place to get coffee, work, and hang out with friends. Highly recommend the spanish latte and brownie!',
+    who: 'Huda Alattar',
   },
 ];
 
@@ -129,8 +129,8 @@ export const GALLERY_FRAMES: readonly GalleryFrame[] = [
 ];
 
 export const HOURS = {
-  weekdays: { label: 'Mon – Sat', value: '8:00 AM — 12:00 AM' },
-  sunday: { label: 'Sunday', value: '9:00 AM — 11:00 PM' },
+  weekdays: { label: 'Mon – Sat', value: '8:00 AM – 12:00 AM' },
+  sunday:   { label: 'Sunday',    value: '9:00 AM – 11:00 PM' },
 } as const;
 
 export const LINKS = {

@@ -20,9 +20,7 @@ export function Testimonials() {
           </figure>
         ))}
       </div>
-      <p className="testimonials__note">
-        Sample quotes — replace with real Google review snippets.
-      </p>
+      
     </section>
   );
 }

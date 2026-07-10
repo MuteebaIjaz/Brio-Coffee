@@ -24,8 +24,8 @@ export function Footer() {
         </div>
         <div className="footer__col">
           <div className="footer__col-title">HOURS</div>
-          <span>Mon–Sat · 8 AM–12 AM</span>
-          <span>Sunday · 9 AM–11 PM</span>
+          <span>Mon – Sat &nbsp;·&nbsp; 8:00 AM – 12:00 AM</span>
+          <span>Sunday &nbsp;·&nbsp; 9:00 AM – 11:00 PM</span>
         </div>
         <div className="footer__col">
           <div className="footer__col-title">FIND US</div>
