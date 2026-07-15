@@ -1,4 +1,4 @@
-import { ElementType, ComponentPropsWithoutRef, ReactNode } from 'react';
+import { ElementType, ReactNode } from 'react';
 import { useReveal } from '../hooks/useReveal';
 
 interface RevealProps {

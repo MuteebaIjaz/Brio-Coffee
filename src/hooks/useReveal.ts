@@ -14,7 +14,7 @@ interface UseRevealResult {
 export function useReveal({
   threshold = 0.15,
   rootMargin = '0px 0px -60px 0px',
-  triggerOnce = true,
+  triggerOnce = false,
 }: UseRevealOptions = {}): UseRevealResult {
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);

@@ -1,10 +1,13 @@
 import { useTilt } from '../hooks/useTilt';
-import { HOURS, LINKS } from '../data/site';
-import { Navbar } from './Navbar';
+import { useIsOpen } from '../hooks/useIsOpen';
+import { LINKS, GOOGLE_REVIEW_COUNT } from '../data/site';
+import { Reveal } from './Reveal';
+
 import heroGuestMatcha from '../assets/hero-guest-matcha.jpg';
 
 export function Hero() {
-  const { imgRef, copyRef, onMouseMove, onMouseLeave } = useTilt();
+  const { imgRef, onMouseMove, onMouseLeave } = useTilt();
+  const isOpen = useIsOpen();
 
   return (
     <header
@@ -13,31 +16,41 @@ export function Hero() {
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
     >
-      <Navbar />
 
       <div className="hero__body">
-        <div className="hero__copy" ref={copyRef}>
+      <Reveal>
+          <div className="hero__copy">
           <p className="hero__kicker">SPECIALTY COFFEE · BEIRUT</p>
           <h1 className="display hero__headline">
             Every Cup.
             <br />
             <em>Tells a Story.</em>
           </h1>
+
+          {/* Trust indicators */}
+          <div className="hero__trust-row" aria-label="Why choose BRIO">
+            <span className="hero__trust-item">
+              <span className="stars" aria-hidden="true">★</span> 4.9 Rating
+            </span>
+            <span className="hero__trust-item">Freshly Brewed Daily</span>
+            <span className="hero__trust-item">Specialty Coffee</span>
+          </div>
+
           <p className="hero__lede">
             Specialty coffee, matcha creations and handmade treats — poured
             daily until midnight in Alameddine, Beirut.
           </p>
+
+          {/* Dual CTA row */}
           <div className="hero__cta-row">
-            <a className="pill pill--solid hero__cta" href="#menu">
+            <a className="pill pill--solid hero__cta hero__cta--primary" href="#menu">
+              ORDER NOW
+            </a>
+            <a className="pill pill--outline hero__cta" href="#menu">
               VIEW MENU ↗
             </a>
-            <span className="hero__rating">
-              <span className="stars" aria-hidden="true">
-                ★★★★★
-              </span>
-              5.0 on Google
-            </span>
           </div>
+
           <div className="hero__visit-card">
             <div className="hero__visit-map" aria-hidden="true">
               <iframe
@@ -60,45 +73,40 @@ export function Hero() {
             </div>
           </div>
         </div>
+      </Reveal>
 
-        <div className="hero__stage">
-          <div className="hero__frame">
-            <img
-              className="hero__frame-img"
-              src={heroGuestMatcha}
-              alt="Guest holding an oversized iced matcha outside BRIO Coffee"
-            />
-          </div>
+      <Reveal>
+          <div className="hero__stage">
           <div className="hero__pop-float">
             <div className="hero__pop" ref={imgRef}>
               <div className="hero__pop-crop">
                 <img
                   className="hero__pop-img"
                   src={heroGuestMatcha}
-                  alt=""
-                  aria-hidden="true"
+                  alt="Guest holding an oversized iced matcha outside BRIO Coffee"
                 />
               </div>
             </div>
           </div>
-          <div className="hero__badge">
-            <span className="stars" aria-hidden="true">
-              ★★★★★
-            </span>
-            <span>5.0 · Google</span>
+          <div className="hero__top-row">
+            <a className="hero__menu-fab" href="#menu">
+              View Menu ↗
+            </a>
+            <div className="hero__badge">
+              <span className="stars" aria-hidden="true">
+                ★★★★★
+              </span>
+              <span>5.0 ({GOOGLE_REVIEW_COUNT}+)</span>
+            </div>
           </div>
-          <div className="hero__hours">
-            <span className="hero__hours-eyebrow">WE'RE OPEN</span>
-            <div className="hero__hours-row">
-              <span>{HOURS.weekdays.label}</span>
-              <span>{HOURS.weekdays.value}</span>
-            </div>
-            <div className="hero__hours-row">
-              <span>{HOURS.sunday.label}</span>
-              <span>{HOURS.sunday.value}</span>
-            </div>
+          <div
+            className={`hero__status${isOpen ? ' hero__status--open' : ' hero__status--closed'}`}
+          >
+            <span className="hero__status-dot" aria-hidden="true" />
+            {isOpen ? 'Open Now' : 'Currently Closed'}
           </div>
         </div>
+      </Reveal>
       </div>
 
       <FeatureStrip />

@@ -199,7 +199,7 @@ function ConfirmOverlay({ onDone }: { onDone: () => void }) {
         </div>
         <p className="cart-confirm-overlay__msg">Order placed!</p>
         <p className="cart-confirm-overlay__sub">
-          See you soon at BRIO ☕
+         Thankyou for placing order at BRIO ☕
         </p>
       </div>
     </div>

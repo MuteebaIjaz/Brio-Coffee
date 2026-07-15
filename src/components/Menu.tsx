@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect } from 'react';
 import { MENU_CATEGORIES, MENU_ITEMS } from '../data/site';
 import type { MenuCategory } from '../data/site';
 import { ImageSlot } from './ImageSlot';
+import { Reveal } from './Reveal';
 import { useCart } from '../context/CartContext';
 
 /* ── Real product images ──────────────────────────────────── */
@@ -10,7 +11,7 @@ import V60Img from '../assets/gallery-pourover.jpg';
 import MatchaImg from '../assets/Strawberry matcha.png';
 import ColdBrewImg from '../assets/Cold Brew on Wood.jpg';
 import TurkishImg from '../assets/gallery-espresso-pour.jpg';
-import BrownieImg from '../assets/Dates Creation Plate.jpg';
+import BrownieImg from '../assets/Desert.png';
 
 const MENU_IMAGES: Record<string, string> = {
   'Spanish Latte': SpanishLatteImg,
@@ -29,6 +30,14 @@ const MENU_IMG_POS: Record<string, string> = {
   'Cold Brew': '50% 40%',
   'Turkish Coffee': '50% 50%',
   'Lotus Brownie': '50% 40%',
+};
+
+/* ── Badge color variant ──────────────────────────────────── */
+const BADGE_VARIANT: Record<string, string> = {
+  'Best Seller': 'menu__badge--gold',
+  'Popular': 'menu__badge--purple',
+  'New': 'menu__badge--green',
+  'Seasonal': 'menu__badge--bronze',
 };
 
 type Tab = MenuCategory | 'All';
@@ -110,58 +119,67 @@ export function Menu() {
 
   return (
     <section className="menu" id="menu" aria-labelledby="menu-title">
-      <div className="section-head">
-        <div>
-          <p className="eyebrow">SIGNATURE MENU</p>
-          <h2 className="display section-head__title" id="menu-title">
-            What we pour
-          </h2>
+      <Reveal>
+        <div className="section-head">
+          <div>
+            <p className="eyebrow">SIGNATURE MENU</p>
+            <h2 className="display section-head__title" id="menu-title">
+              What we pour
+            </h2>
+          </div>
+          <p className="section-head__aside">
+            Prices in LBP (000) — as listed in store
+          </p>
         </div>
-        <p className="section-head__aside">
-          Prices in LBP (000) — as listed in store
-        </p>
-      </div>
 
-      <div className="menu__tabs" role="tablist" aria-label="Menu categories">
-        {MENU_CATEGORIES.map((cat) => (
-          <button
-            key={cat}
-            role="tab"
-            aria-selected={active === cat}
-            className={
-              active === cat ? 'menu__tab menu__tab--active' : 'menu__tab'
-            }
-            onClick={() => setActive(cat)}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
+        <div className="menu__tabs" role="tablist" aria-label="Menu categories">
+          {MENU_CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              role="tab"
+              aria-selected={active === cat}
+              className={
+                active === cat ? 'menu__tab menu__tab--active' : 'menu__tab'
+              }
+              onClick={() => setActive(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </Reveal>
 
       <div className="menu__grid">
-        {items.map((m) => (
-          <article className="menu__card" key={m.name}>
-            <div className="menu__card-photo">
-              <ImageSlot
-                label={m.photoLabel}
-                src={MENU_IMAGES[m.name]}
-                objectPosition={MENU_IMG_POS[m.name] ?? '50% 50%'}
-              />
-            </div>
-            <div className="menu__card-body">
-              <div className="menu__card-top">
-                <h3 className="menu__card-name">{m.name}</h3>
-                <span className="menu__card-price">{m.price}</span>
+        {items.map((m, i) => (
+          <Reveal key={m.name} delay={i * 60}>
+            <article className="menu__card">
+              <div className="menu__card-photo">
+                <ImageSlot
+                  label={m.photoLabel}
+                  src={MENU_IMAGES[m.name]}
+                  objectPosition={MENU_IMG_POS[m.name] ?? '50% 50%'}
+                />
+                {m.badge && (
+                  <span className={`menu__badge ${BADGE_VARIANT[m.badge] ?? ''}`}>
+                    {m.badge}
+                  </span>
+                )}
               </div>
-              <p className="menu__card-desc">{m.desc}</p>
-              <AddToCartBtn
-                name={m.name}
-                price={m.price}
-                image={MENU_IMAGES[m.name]}
-                category={m.category}
-              />
-            </div>
-          </article>
+              <div className="menu__card-body">
+                <div className="menu__card-top">
+                  <h3 className="menu__card-name">{m.name}</h3>
+                  <span className="menu__card-price">{m.price}</span>
+                </div>
+                <p className="menu__card-desc">{m.desc}</p>
+                <AddToCartBtn
+                  name={m.name}
+                  price={m.price}
+                  image={MENU_IMAGES[m.name]}
+                  category={m.category}
+                />
+              </div>
+            </article>
+          </Reveal>
         ))}
       </div>
     </section>

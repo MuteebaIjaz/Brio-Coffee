@@ -6,6 +6,7 @@ import { useCart } from '../context/CartContext';
 const NAV_LINKS = [
   { label: 'ABOUT', href: '#about' },
   { label: 'MENU', href: '#menu' },
+  { label: 'CLUB', href: '#summer-club' },
   { label: 'GALLERY', href: '#gallery' },
   { label: 'VISIT', href: '#visit' },
 ] as const;
@@ -69,7 +70,15 @@ function CartIconBtn({ onClick }: { onClick: () => void }) {
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { openCart } = useCart();
+
+  /* Glassmorphism on scroll */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   /* Close drawer on resize back to desktop */
   useEffect(() => {
@@ -93,11 +102,19 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="nav" aria-label="Main">
-        <a className="nav__brand" href="#top" aria-label="BRIO Coffee home">
-          <img className="nav__logo" src={logo} alt="" />
-          <span className="nav__wordmark">BRIO</span>
-        </a>
+      <nav className={`nav${scrolled ? ' nav--scrolled' : ''}`} aria-label="Main">
+        {/* Hamburger (Left on mobile, hidden on desktop) */}
+        <button
+          className={`nav__burger${open ? ' nav__burger--open' : ''}`}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
 
         <div className="nav__links">
           {NAV_LINKS.map((l) => (
@@ -106,6 +123,14 @@ export function Navbar() {
             </a>
           ))}
         </div>
+
+        <a className="nav__brand" href="#top" aria-label="BRIO Coffee home">
+          <span className="nav__brand-row">
+            <img className="nav__logo" src={logo} alt="" />
+            <span className="nav__wordmark">BRIO</span>
+          </span>
+          <span className="nav__tagline">Specialty Coffee</span>
+        </a>
 
         <div className="nav__actions">
           <a className="pill pill--outline" href="#visit">
@@ -120,20 +145,9 @@ export function Navbar() {
           <CartIconBtn onClick={openCart} />
         </div>
 
-        {/* Hamburger — only visible on mobile */}
-        <div className="nav__mobile-right">
+        {/* Mobile Right: Cart */}
+        <div className="nav__mobile-cart">
           <CartIconBtn onClick={openCart} />
-          <button
-            className={`nav__burger${open ? ' nav__burger--open' : ''}`}
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
         </div>
       </nav>
 
@@ -143,6 +157,23 @@ export function Navbar() {
         className={`nav__drawer${open ? ' nav__drawer--open' : ''}`}
         aria-hidden={!open}
       >
+        <div className="nav__drawer-header">
+          <button
+            className="nav__drawer-close"
+            aria-label="Close menu"
+            onClick={close}
+          >
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path
+                d="M2 2l14 14M16 2L2 16"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+        </div>
+
         <nav className="nav__drawer-links" aria-label="Mobile navigation">
           {NAV_LINKS.map((l) => (
             <a key={l.label} href={l.href} onClick={close}>
@@ -150,7 +181,7 @@ export function Navbar() {
             </a>
           ))}
           <div className="nav__drawer-actions">
-            <a className="pill pill--outline" href="#visit" onClick={close}>
+            <a className="pill pill--solid" href="#visit" onClick={close}>
               VISIT US
             </a>
             <a
